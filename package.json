@@ -1,0 +1,17 @@
+{
+  "name": "coding-theory",
+  "version": "1.0.0",
+  "description": "coding theory labs",
+  "main": "index.js",
+  "directories": {
+    "lib": "lib"
+  },
+  "scripts": {
+    "dev": "nodemon index.js"
+  },
+  "author": "Potato",
+  "license": "MIT",
+  "devDependencies": {
+    "nodemon": "^3.0.1"
+  }
+}
