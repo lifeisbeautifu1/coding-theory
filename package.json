@@ -7,11 +7,18 @@
     "lib": "lib"
   },
   "scripts": {
-    "dev": "nodemon index.js"
+    "dev": "nodemon index.js",
+    "test": "jest"
   },
   "author": "Potato",
   "license": "MIT",
   "devDependencies": {
+    "@jest/globals": "^29.7.0",
+    "eslint": "^8.49.0",
+    "jest": "^29.7.0",
     "nodemon": "^3.0.1"
+  },
+  "dependencies": {
+    "colors": "^1.4.0"
   }
 }
