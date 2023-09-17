@@ -8,8 +8,8 @@
     "lib": "lib"
   },
   "scripts": {
-    "dev": "nodemon index.js",
-    "test": "mocha lib"
+    "dev": "nodemon src/index.js",
+    "test": "mocha src/*"
   },
   "author": "Potato",
   "license": "MIT",
@@ -24,6 +24,10 @@
     "prettier": "^3.0.3"
   },
   "dependencies": {
-    "colors": "^1.4.0"
+    "colors": "^1.4.0",
+    "module-alias": "^2.2.3"
+  },
+  "_moduleAliases": {
+    "@root": "src"
   }
 }

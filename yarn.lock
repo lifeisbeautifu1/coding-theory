@@ -561,6 +561,7 @@ __metadata:
     husky: ^8.0.3
     lint-staged: ^14.0.1
     mocha: ^10.2.0
+    module-alias: ^2.2.3
     nodemon: ^3.0.1
     prettier: ^3.0.3
   languageName: unknown
@@ -2215,6 +2216,13 @@ __metadata:
     _mocha: bin/_mocha
     mocha: bin/mocha.js
   checksum: 406c45eab122ffd6ea2003c2f108b2bc35ba036225eee78e0c784b6fa2c7f34e2b13f1dbacef55a4fdf523255d76e4f22d1b5aacda2394bd11666febec17c719
+  languageName: node
+  linkType: hard
+
+"module-alias@npm:^2.2.3":
+  version: 2.2.3
+  resolution: "module-alias@npm:2.2.3"
+  checksum: 6169187f69de8dcf8af8fab4d9e53ada6338a43f7670d38d0b27a089c28f9eb18d85a6fd46f11b54c63079a68449b85d071d7db0ac067f9f7faedbcd6231456d
   languageName: node
   linkType: hard
 
