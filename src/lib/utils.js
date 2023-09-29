@@ -141,3 +141,27 @@ export function generateBinaryWords(arr, size, i, fullArray) {
   arr[i] = 1;
   generateBinaryWords(arr, size, i + 1, fullArray);
 }
+
+export function sum(A, B) {
+  if (A.length !== B.length || A[0].length !== B[0].length) {
+    throw new Error("Sizes doesnt match");
+  }
+  return A.map((row, rowIndex) =>
+    row.map((num, colIndex) => (num + B[rowIndex][colIndex]) % 2)
+  );
+}
+
+export function equals(A, B) {
+  if (A.length !== B.length || A[0].length !== B[0].length) {
+    throw new Error("Sizes doesnt match");
+  }
+  let flag = true;
+  A.forEach((row, rowIndex) =>
+    row.forEach((num, colIndex) => {
+      if (num !== B[rowIndex][colIndex]) {
+        flag = false;
+      }
+    })
+  );
+  return flag;
+}

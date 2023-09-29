@@ -4,4 +4,6 @@ export {
   getIdentityMatrix,
   matrixMul,
   generateBinaryWords,
+  equals,
+  sum,
 } from "./utils.js";
