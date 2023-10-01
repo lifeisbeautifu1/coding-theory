@@ -53,6 +53,9 @@ describe("Systematic Code", () => {
       [0, 1, 0, 0, 0, 0, 0],
       [0, 0, 1, 0, 0, 0, 0],
       [0, 0, 0, 1, 0, 0, 0],
+      [0, 0, 0, 0, 1, 0, 0],
+      [0, 0, 0, 0, 0, 1, 0],
+      [0, 0, 0, 0, 0, 0, 1],
     ]);
 
     const syndromes = matrixMul(errors, H);
@@ -120,7 +123,7 @@ describe("Systematic Code", () => {
     console.log("Отправлено: ");
     console.table(v);
 
-    error = [[1, 0, 0, 1, 0, 0, 0]];
+    error = [[0, 1, 0, 1, 0, 0, 0]];
 
     console.log("Возникла ошибка: ");
     console.table(error);
@@ -135,9 +138,7 @@ describe("Systematic Code", () => {
     console.table(syndrome);
 
     console.log("Синдрому соответсвует ошибки: ");
-    const allSyndromes = Object.keys(syndromeTable).map((key) =>
-      JSON.parse(key)
-    );
+    let allSyndromes = Object.keys(syndromeTable).map((key) => JSON.parse(key));
 
     let firstError, secondError;
     for (let i = 0; i < k - 1; ++i) {
@@ -153,6 +154,66 @@ describe("Systematic Code", () => {
 
     console.log("Полная ошибка: ");
     calculatedError = sum(firstError, secondError);
+    console.table(calculatedError);
+
+    corrected = sum(w, calculatedError);
+
+    console.log("Исправленное сообщение:");
+    console.table(corrected);
+
+    decodedMessage = corrected.map((row) => row.slice(0, k));
+    console.log("Декодированное сообщение: ");
+    console.table(decodedMessage);
+
+    assert.deepEqual(u, decodedMessage);
+
+    /* Тройная ошибка */
+
+    console.log("\nПример с тройной ошибкой:\n");
+
+    console.log("Исходное сообщение: ");
+    console.table(u);
+
+    v = matrixMul(u, GHardcoded);
+    console.log("Отправлено: ");
+    console.table(v);
+
+    error = [[0, 1, 1, 1, 0, 0, 0]];
+
+    console.log("Возникла ошибка: ");
+    console.table(error);
+
+    w = sum(v, error);
+    console.log("Принято: ");
+    console.table(w);
+
+    syndrome = matrixMul(w, H);
+
+    console.log("Синдром: ");
+    console.table(syndrome);
+
+    console.log("Синдрому соответсвует ошибки: ");
+    allSyndromes = Object.keys(syndromeTable).map((key) => JSON.parse(key));
+
+    let thirdError;
+    for (let i = 0; i < k - 2; ++i) {
+      for (let j = i + 1; j < k - 1; ++j) {
+        let total = sum(allSyndromes[i], allSyndromes[j]);
+        for (let m = j + 1; m < k; ++m) {
+          if (equals(sum(total, allSyndromes[m]), syndrome)) {
+            firstError = syndromeTable[JSON.stringify(allSyndromes[i])];
+            console.table(firstError);
+            secondError = syndromeTable[JSON.stringify(allSyndromes[j])];
+            console.table(secondError);
+            thirdError = syndromeTable[JSON.stringify(allSyndromes[m])];
+            console.table(thirdError);
+          }
+        }
+      }
+    }
+
+    console.log("Полная ошибка: ");
+    calculatedError = sum(sum(firstError, secondError), thirdError);
     console.table(calculatedError);
 
     corrected = sum(w, calculatedError);
@@ -212,19 +273,6 @@ describe("Systematic Code", () => {
     let errors = getErrors(n, k, true);
     console.log("Errors:");
     console.table(errors);
-
-    assert.deepEqual(errors, [
-      [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-      [0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-      [0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-      [0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-      [1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-      [1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-      [1, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-      [0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-      [0, 1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-      [0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-    ]);
 
     const syndromes = matrixMul(errors, H);
     console.log("Синдромы: ");
@@ -350,7 +398,7 @@ describe("Systematic Code", () => {
     console.log("Отправлено: ");
     console.table(v);
 
-    error = [[1, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]];
+    error = [[0, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]];
 
     console.log("Возникла ошибка: ");
     console.table(error);

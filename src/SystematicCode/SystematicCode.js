@@ -64,17 +64,17 @@ export function getH(n, k, G) {
 
 export function getErrors(n = 7, k = 4, double = false) {
   const res = [];
-  for (let i = 0; i < k; ++i) {
+  for (let i = 0; i < n; ++i) {
     let arr = new Array(n).fill(0);
     arr[i] = 1;
     res.push(arr);
   }
   if (double) {
-    for (let i = 0; i < k - 1; ++i) {
+    for (let i = 0; i < n - 1; ++i) {
       let arr = new Array(n).fill(0);
       arr[i] = 1;
       let flag = false;
-      for (let j = i + 1; j < k; ++j) {
+      for (let j = i + 1; j < n; ++j) {
         if (flag) {
           arr = new Array(n).fill(0);
           arr[i] = 1;
