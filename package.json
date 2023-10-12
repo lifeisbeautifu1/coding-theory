@@ -9,7 +9,8 @@
   },
   "scripts": {
     "dev": "nodemon src/index.js",
-    "test": "mocha src/*"
+    "test": "mocha src/*",
+    "test-hamming": "mocha src/HammingCode"
   },
   "author": "Potato",
   "license": "MIT",

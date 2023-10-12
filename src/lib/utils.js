@@ -142,6 +142,28 @@ export function generateBinaryWords(arr, size, i, fullArray) {
   generateBinaryWords(arr, size, i + 1, fullArray);
 }
 
+export function containsOneOnes(arr) {
+  let flag = false;
+  for (let i = 0; i < arr.length; ++i) {
+    if (flag && arr[i] === 1) {
+      return false;
+    } else if (arr[i] === 1) {
+      flag = true;
+    }
+  }
+  return flag;
+}
+
+export function getErrors(n) {
+  return new Array(n)
+    .fill(0)
+    .map((row, rowIndex) =>
+      new Array(n)
+        .fill(0)
+        .map((num, colIndex) => (rowIndex === colIndex ? 1 : 0))
+    );
+}
+
 export function sum(A, B) {
   if (A.length !== B.length || A[0].length !== B[0].length) {
     throw new Error("Sizes doesnt match");

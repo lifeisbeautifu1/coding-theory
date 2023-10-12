@@ -6,4 +6,6 @@ export {
   generateBinaryWords,
   equals,
   sum,
+  containsOneOnes,
+  getErrors,
 } from "./utils.js";
