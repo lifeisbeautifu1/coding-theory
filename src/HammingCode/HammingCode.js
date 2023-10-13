@@ -74,6 +74,25 @@ class HammingCode {
         )
       );
   }
+
+  expand() {
+    this.n = this.n + 1;
+    this.d = this.d + 1;
+
+    this.H = [
+      ...this.H.map((row) => [...row, 1]),
+      new Array(this.n - this.k)
+        .fill(0)
+        .map((num, index) => (index === this.n - this.k - 1 ? 1 : num)),
+    ];
+
+    this.G = [
+      ...this.G.map((row) => [
+        ...row,
+        row.reduce((acc, num) => acc + num, 0) % 2 === 0 ? 0 : 1,
+      ]),
+    ];
+  }
 }
 
 export default HammingCode;
