@@ -8,4 +8,6 @@ export {
   sum,
   containsOneOnes,
   getErrors,
+  wt,
+  B,
 } from "./utils.js";

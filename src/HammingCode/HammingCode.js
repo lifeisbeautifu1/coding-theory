@@ -2,6 +2,7 @@ import { generateBinaryWords, containsOneOnes } from "../lib/index.js";
 
 /**
  * Hamming code class
+ * @description class to generate Hamming code
  */
 class HammingCode {
   constructor(r) {
