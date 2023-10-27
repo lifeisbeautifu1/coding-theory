@@ -102,7 +102,7 @@ export function getIdentityMatrix(n) {
  * @param {*} second matrix2
  * @returns matrix1 @ matrix2
  */
-export function matrixMul(matrix1, matrix2) {
+export function matrixMul(matrix1, matrix2, binary = true) {
   if (matrix1[0].length !== matrix2.length) {
     throw new Error(
       `Inner sizes doesn't match (${matrix1.length}, ${matrix1[0].length}) x (${matrix2.length}, ${matrix2[0].length})`
@@ -114,7 +114,10 @@ export function matrixMul(matrix1, matrix2) {
     for (let j = 0; j < matrix2[0].length; ++j) {
       let num = 0;
       for (let k = 0; k < matrix1[0].length; ++k) {
-        num = (num + matrix1[i][k] * matrix2[k][j]) % 2;
+        num = num + matrix1[i][k] * matrix2[k][j];
+        if (binary) {
+          num %= 2;
+        }
       }
       arr.push(num);
     }
@@ -192,6 +195,21 @@ export function wt(s) {
   return s[0].reduce((acc, item) => acc + item, 0);
 }
 
+export function factorial(n) {
+  if (n === 0) {
+    return 1;
+  }
+  let res = 1;
+  for (let i = 2; i <= n; ++i) {
+    res *= i;
+  }
+  return res;
+}
+
+export function C(k, m) {
+  return factorial(m) / (factorial(m - k) * factorial(k));
+}
+
 export const B = [
   [1, 1, 0, 1, 1, 1, 0, 0, 0, 1, 0, 1],
   [1, 0, 1, 1, 1, 0, 0, 0, 1, 0, 1, 1],
@@ -206,3 +224,48 @@ export const B = [
   [0, 1, 1, 0, 1, 1, 1, 0, 0, 0, 1, 1],
   [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0],
 ];
+
+export function isNested(array) {
+  for (let i = 0; i < array.length; ++i) {
+    if (Array.isArray(array[i])) return true;
+  }
+  return false;
+}
+
+export function generateG(r, m) {
+  if (r === 0) {
+    return new Array(2 ** m).fill(1);
+  } else if (r === m) {
+    const prev = generateG(m - 1, m);
+    return [
+      ...(isNested(prev) ? prev : [prev]),
+      new Array(2 ** m)
+        .fill(0)
+        .map((num, index) => (index === 2 ** m - 1 ? 1 : num)),
+    ];
+  } else {
+    let firstRow = generateG(r, m - 1);
+    firstRow = firstRow.map((row) => row.concat(row));
+    return [
+      ...firstRow,
+      new Array(2 ** (m - 1)).fill(0).concat(generateG(r - 1, m - 1)),
+    ];
+  }
+}
+
+export function isPowerOfTwo(x) {
+  return (x & (x - 1)) == 0;
+}
+
+export function v(j, m) {
+  const bits = new Array(m).fill(0);
+  let currJ = j;
+  return bits.reduceRight((acc, _, index) => {
+    if (2 ** (m - (index + 1)) <= currJ) {
+      currJ -= 2 ** (m - (index + 1));
+      return [...acc, 1];
+    } else {
+      return [...acc, 0];
+    }
+  }, []);
+}

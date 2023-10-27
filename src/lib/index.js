@@ -9,5 +9,10 @@ export {
   containsOneOnes,
   getErrors,
   wt,
+  factorial,
+  C,
+  generateG,
+  isNested,
+  v,
   B,
 } from "./utils.js";

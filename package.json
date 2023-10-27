@@ -10,8 +10,11 @@
   "scripts": {
     "dev": "nodemon src/index.js",
     "test": "mocha src/*",
+    "test-linear": "mocha src/LinearCode",
+    "test-systematic": "mocha src/SystematicCode",
     "test-hamming": "mocha src/HammingCode",
-    "test-golay": "mocha src/GolayCode"
+    "test-golay": "mocha src/GolayCode",
+    "test-reed-muller": "mocha src/ReedMullerCode"
   },
   "author": "Potato",
   "license": "MIT",
@@ -27,6 +30,7 @@
   },
   "dependencies": {
     "colors": "^1.4.0",
+    "mathjs": "^12.0.0",
     "module-alias": "^2.2.3"
   },
   "_moduleAliases": {
