@@ -15,4 +15,7 @@ export {
   isNested,
   v,
   B,
+  generateReverseBinaryStrings,
+  generateSets,
+  f,
 } from "./utils.js";

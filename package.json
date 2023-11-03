@@ -14,7 +14,8 @@
     "test-systematic": "mocha src/SystematicCode",
     "test-hamming": "mocha src/HammingCode",
     "test-golay": "mocha src/GolayCode",
-    "test-reed-muller": "mocha src/ReedMullerCode"
+    "test-reed-muller": "mocha src/ReedMullerCode",
+    "test-reed-muller-v2": "mocha src/ReedMullerCodeV2"
   },
   "author": "Potato",
   "license": "MIT",

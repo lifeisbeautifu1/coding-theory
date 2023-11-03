@@ -3,7 +3,7 @@ import { C, generateG, matrixMul, getIdentityMatrix, v } from "../lib/index.js";
 
 class ReedMullerCode {
   constructor(r, m) {
-    this.n = 2 ** r;
+    this.n = 2 ** m;
     this.k = 0;
     this.m = m;
     for (let i = 0; i <= r; ++i) {

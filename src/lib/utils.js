@@ -269,3 +269,46 @@ export function v(j, m) {
     }
   }, []);
 }
+
+export function generateReverseBinaryStrings(m) {
+  const res = [];
+
+  generateBinaryWords(new Array(m).fill(0), m, 0, res);
+
+  return res.map((row) => row.reverse());
+}
+
+export function generateSets(m) {
+  let res = generateReverseBinaryStrings(m);
+
+  res.pop();
+
+  res = res.map((row) =>
+    row.reduce((acc, item, index) => (item ? `${acc}${index}` : acc), "")
+  );
+
+  res = res.sort((a, b) => {
+    if (a.length !== b.length) {
+      return a.length - b.length;
+    }
+    for (let i = a.length - 1; i >= 0; --i) {
+      if (a[i] !== b[i]) {
+        return b[i] - a[i];
+      }
+    }
+  });
+
+  console.log("Our v sets are: ".green.bold);
+  console.table(res);
+
+  return res.map((str) => (str ? str.split("").map((num) => +num) : []));
+}
+
+export function f(set, nums) {
+  if (set.length === 0) {
+    return 1;
+  }
+  let amount = 1;
+  set.forEach((num) => (amount *= (nums[num] + 1) % 2));
+  return amount;
+}
