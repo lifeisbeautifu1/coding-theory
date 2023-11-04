@@ -176,6 +176,14 @@ export function sum(A, B) {
   );
 }
 
+export function scalarMul(a, b) {
+  if (a.length !== b.length) {
+    throw new Error("Sizes doesnt match");
+  }
+
+  return a.reduce((acc, item, index) => (acc + item * b[index]) % 2, 0);
+}
+
 export function equals(A, B) {
   if (A.length !== B.length || A[0].length !== B[0].length) {
     throw new Error("Sizes doesnt match");
@@ -310,5 +318,14 @@ export function f(set, nums) {
   }
   let amount = 1;
   set.forEach((num) => (amount *= (nums[num] + 1) % 2));
+  return amount;
+}
+
+export function vj(Ic, Hj, nums) {
+  if (Ic.length === 0) {
+    return 1;
+  }
+  let amount = 1;
+  Ic.forEach((num) => (amount *= (nums[num] + Hj[num] + 1) % 2));
   return amount;
 }

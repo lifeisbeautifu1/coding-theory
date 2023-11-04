@@ -6,6 +6,7 @@ export {
   generateBinaryWords,
   equals,
   sum,
+  scalarMul,
   containsOneOnes,
   getErrors,
   wt,
@@ -18,4 +19,5 @@ export {
   generateReverseBinaryStrings,
   generateSets,
   f,
+  vj,
 } from "./utils.js";
