@@ -29,15 +29,39 @@ describe("Reed-Muller V2 Code\n", () => {
 
     assert.deepEqual(v, [[0, 1, 0, 1, 1, 1, 1, 1, 1, 0, 1, 0, 0, 0, 0, 0]]);
 
-    const error = [[0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]];
+    let error = [[0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]];
 
-    const w = sum(v, error);
+    let w = sum(v, error);
 
-    const decoded = code.decode(w);
+    let decoded = code.decode(w);
 
     console.log("decoded".green.bold);
     console.table(decoded);
 
     assert.deepEqual(decoded, u);
+
+    error = [[0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]];
+
+    w = sum(v, error);
+
+    decoded = code.decode(w);
+
+    console.log("decoded".green.bold);
+
+    console.table(decoded);
+
+    assert.deepEqual(decoded, u);
+
+    error = [[0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]];
+
+    w = sum(v, error);
+
+    decoded = code.decode(w);
+
+    console.log("decoded".green.bold);
+
+    console.table(decoded);
+
+    assert.notDeepEqual(decoded, w);
   });
 });

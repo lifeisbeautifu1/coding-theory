@@ -75,7 +75,7 @@ class ReedMullerCodeV2 {
     let i = this.r;
     let previous = this.r;
 
-    console.table(currentW);
+    // console.table(currentW);
 
     this.v.forEach((J) => {
       if (J.length !== i) {
@@ -88,9 +88,9 @@ class ReedMullerCodeV2 {
         previous = i;
       }
 
-      console.log(`i = ${i}`.green.bold);
-      console.log(`w(${i}) = `.green.bold);
-      console.log(currentW);
+      // console.log(`i = ${i}`.green.bold);
+      // console.log(`w(${i}) = `.green.bold);
+      // console.log(currentW);
 
       console.log("Current I is ".green.bold);
       console.table(J);
