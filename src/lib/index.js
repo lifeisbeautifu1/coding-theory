@@ -21,3 +21,4 @@ export {
   f,
   vj,
 } from "./utils.js";
+export { Polynomial } from "./Polynomial.js";
